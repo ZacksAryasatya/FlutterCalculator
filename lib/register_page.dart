@@ -45,10 +45,8 @@ class _RegisterPageState extends State<RegisterPage> {
                 ),
               ),
             ),
-            //image dari resources
+            
             SizedBox(height: 10),
-
-            //buatlah isian username dan password
             Container(
               margin: EdgeInsets.only(top: 20, bottom: 10),
               child: TextField(
@@ -61,7 +59,7 @@ class _RegisterPageState extends State<RegisterPage> {
               ),
             ),
             TextField(
-              obscureText: true, // untuk menyembunyikan karakter password
+              obscureText: true, 
               decoration: InputDecoration(
                 labelText: "Password",
                 hintText: "Enter your password",
@@ -84,12 +82,10 @@ class _RegisterPageState extends State<RegisterPage> {
                 ],
                 onChanged: (value) {
 
-                  
                 },
               ),
             ),
 
-            //buatkan tanggal lahir
             Container(
               margin: EdgeInsets.only(top: 10, bottom: 10),
               child: TextField(
@@ -112,13 +108,13 @@ class _RegisterPageState extends State<RegisterPage> {
                     String formattedDate =
                         "${pickedDate.day}/${pickedDate.month}/${pickedDate.year}";
                     setState(() {
-                      tanggalController.text = formattedDate; // Set value ke controller
+                      tanggalController.text = formattedDate; 
                     });
                   }
                 },
               ),
             ),
-            //button login
+
             Center(
               child: Container(
                 margin: EdgeInsets.only(top: 10),
@@ -164,7 +160,7 @@ class _RegisterPageState extends State<RegisterPage> {
                     context,
                     MaterialPageRoute(
                       builder: (context) =>
-                          loginPage(), // Pastikan RegisterPage sudah dibuat
+                          loginPage(), 
                     ),
                   );
                 },
