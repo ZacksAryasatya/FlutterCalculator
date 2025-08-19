@@ -13,9 +13,9 @@ class FootballEditController extends GetxController{
   @override
   void onInit() {
     super.onInit();
-    final args = Get.arguments;
-    playerIndex = args["index"];
-    final player = args["player"] as Player;
+    final receivedArguments = Get.arguments;
+    playerIndex = receivedArguments["index"];
+    final player = receivedArguments["player"] as Player;
 
     nameController.text = player.name;
     positionController.text = player.position;

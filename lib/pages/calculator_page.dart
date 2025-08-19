@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/ReusableComponent/widget_textfield2.dart';
-import 'package:flutter_application_1/Routes/routes.dart';
+import 'package:flutter_application_1/ReusableComponent/widget_tf_kalku.dart';
 import 'package:flutter_application_1/controllers/calculator_controller.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_instance/src/extension_instance.dart';
-import 'package:flutter_application_1/ReusableComponent/widget_textfield.dart';
 import 'package:flutter_application_1/ReusableComponent/widget_button.dart';
 
 class CalculatorPage extends StatelessWidget {
@@ -18,82 +16,136 @@ class CalculatorPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text("My Calculator")),
+      appBar: AppBar(title: Text("Calculator")),
       body: Container(
+        margin: const EdgeInsets.symmetric(horizontal: 15),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            MyTextField(
+            SizedBox(height: 10),
+            TextFieldKalku(
               textEditingController: calculatorController.txtAngka1,
-              labelText: "input angka 1",
-              inputDecoration: InputDecoration(
-                labelText: "Input Angka 1",
-                border: OutlineInputBorder(),
-              ),
+              labelText: "Input Angka 1",
             ),
 
-            MyTextField(
+            SizedBox(height: 10),
+            TextFieldKalku(
               textEditingController: calculatorController.txtAngka2,
-              labelText: "input angka 2",
-              inputDecoration: InputDecoration(
-                labelText: "Input Angka 2",
-                border: OutlineInputBorder(),
-              ),
+              labelText: "Input Angka 2",
             ),
 
             Container(
               margin: EdgeInsets.all(10),
-              child: Row(
+              child: Column(
                 children: [
-                  CustomButton(
-                    text: "+",
-                    textColor: Colors.blue,
-                    onPressed: () {
-                      calculatorController.tambah();
-                    },
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Expanded(
+                        child: CustomButton(
+                          text: "+",
+                          textColor: Colors.blue,
+                          onPressed: () {
+                            if (calculatorController.txtAngka1.text.isEmpty ||
+                                calculatorController.txtAngka2.text.isEmpty) {
+                              Get.snackbar(
+                                "Peringatan",
+                                "Harus mengisi kedua field terlebih dahulu",
+                                snackPosition: SnackPosition.TOP,
+                                backgroundColor: Colors.redAccent,
+                                colorText: Colors.white,
+                              );
+                            } else {
+                              calculatorController.tambah();
+                            }
+                          },
+                        ),
+                      ),
+                      SizedBox(width: 10),
+                      Expanded(
+                        child: CustomButton(
+                          text: "-",
+                          textColor: Colors.blue,
+                          onPressed: () {
+                            if (calculatorController.txtAngka1.text.isEmpty ||
+                                calculatorController.txtAngka2.text.isEmpty) {
+                              Get.snackbar(
+                                "Peringatan",
+                                "Harus mengisi kedua field terlebih dahulu",
+                                snackPosition: SnackPosition.TOP,
+                                backgroundColor: Colors.redAccent,
+                                colorText: Colors.white,
+                              );
+                            } else {
+                              calculatorController.kurang();
+                            }
+                          },
+                        ),
+                      ),
+                    ],
                   ),
-                  CustomButton(
-                    text: "-",
-                    textColor: Colors.blue,
-                    onPressed: () {
-                      calculatorController.kurang();
-                    },
+                  SizedBox(height: 10),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Expanded(
+                        child: CustomButton(
+                          text: "X",
+                          textColor: Colors.blue,
+                          onPressed: () {
+                            if (calculatorController.txtAngka1.text.isEmpty ||
+                                calculatorController.txtAngka2.text.isEmpty) {
+                              Get.snackbar(
+                                "Peringatan",
+                                "Harus isi kedua inputannya dulu!",
+                                snackPosition: SnackPosition.TOP,
+                                backgroundColor: Colors.redAccent,
+                                colorText: Colors.white,
+                              );
+                            } else {
+                              calculatorController.kali();
+                            }
+                          },
+                        ),
+                      ),
+                      SizedBox(width: 10),
+                      Expanded(
+                        child: CustomButton(
+                          text: "/",
+                          textColor: Colors.blue,
+                          onPressed: () {
+                            if (calculatorController.txtAngka1.text.isEmpty ||
+                                calculatorController.txtAngka2.text.isEmpty) {
+                              Get.snackbar(
+                                "Peringatan",
+                                "Harus mengisi kedua field terlebih dahulu",
+                                snackPosition: SnackPosition.TOP,
+                                backgroundColor: Colors.redAccent,
+                                colorText: Colors.white,
+                              );
+                            } else {
+                              calculatorController.bagi();
+                            }
+                          },
+                        ),
+                      ),
+                    ],
                   ),
                 ],
               ),
             ),
-            Container(
-              margin: EdgeInsets.all(10),
-              child: Row(
-                children: [
-                  CustomButton(
-                    text: "X",
-                    textColor: Colors.blue,
-                    onPressed: () {
-                      calculatorController.kali();
-                    },
-                  ),
-                  CustomButton(
-                    text: "/",
-                    textColor: Colors.blue,
-                    onPressed: () {
-                      calculatorController.bagi();
-                    },
-                  ),
-                ],
-              ),
-            ),
+
             Obx(() => Text("Hasil " + calculatorController.hasil.value)),
-            CustomButton(
-              text: "Move to football",
-              textColor: Colors.green,
-              onPressed: () {
-                // calculatorController.txtAngka1.clear();
-                // calculatorController.txtAngka2.clear();
-                // calculatorController.hasil.value = "";
-                Get.toNamed(AppRoutes.footballplayers);
-              },
-            ),
+            // CustomButton(
+            //   text: "Move to football",
+            //   textColor: Colors.green,
+            //   onPressed: () {
+            //     // calculatorController.txtAngka1.clear();
+            //     // calculatorController.txtAngka2.clear();
+            //     // calculatorController.hasil.value = "";
+            //     Get.toNamed(AppRoutes.footballplayers);
+            //   },
+            // ),
           ],
         ),
       ),
