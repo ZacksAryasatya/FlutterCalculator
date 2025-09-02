@@ -9,7 +9,7 @@ class MainPage extends StatelessWidget {
   MainPage({super.key});
   final NavController navController = Get.put(NavController());
 
-  final List<Widget> pages = [
+  final pages = [
     CalculatorPage(),
     FootballPage(),
     ProfilePage()
@@ -18,10 +18,7 @@ class MainPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Obx(() => Scaffold(
-      body: IndexedStack(
-        index: navController.selectedIndex.value,
-        children: pages,
-      ),
+      body: pages[navController.selectedIndex.value],
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: navController.selectedIndex.value,
         onTap: navController.changeTabIndex,

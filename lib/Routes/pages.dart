@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter_application_1/Routes/routes.dart';
 import 'package:flutter_application_1/pages/calculator_page.dart';
 import 'package:flutter_application_1/pages/football_edit_page.dart';

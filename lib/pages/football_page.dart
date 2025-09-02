@@ -44,10 +44,7 @@ class FootballPage extends StatelessWidget {
                   onTap: () {
                     Get.toNamed(
                       AppRoutes.footballeditplayers,
-                      arguments: {
-                        "index": index,
-                        "player": player,
-                      },
+                      arguments: index,
                     );
                   },
                 ),
